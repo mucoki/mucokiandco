@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful - Mucoki & Co.</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .success-container {
+            max-width: 700px;
+            margin: 60px auto;
+            padding: 40px;
+            text-align: center;
+            background: #f9f9f9;
+            border-radius: 8px;
+            border: 2px solid #4CAF50;
+        }
+        .success-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+        .success-container h1 {
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+        .success-container p {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+        }
+        .order-details {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+            text-align: left;
+            border: 1px solid #e0e0e0;
+        }
+        .order-details h3 {
+            color: #333;
+            margin-top: 0;
+            border-bottom: 2px solid #d4af37;
+            padding-bottom: 10px;
+        }
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+        .detail-label {
+            font-weight: bold;
+            color: #666;
+        }
+        .detail-value {
+            color: #333;
+            text-align: right;
+        }
+        .item-list {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 15px;
+        }
+        .item {
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .item:last-child {
+            border-bottom: none;
+        }
+        .total-amount {
+            font-size: 1.3em;
+            color: #d4af37;
+            font-weight: bold;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px solid #d4af37;
+        }
+        .action-buttons {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .action-buttons a {
+            padding: 12px 30px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .btn-home {
+            background: #d4af37;
+            color: white;
+        }
+        .btn-home:hover {
+            background: #c9a62a;
+        }
+        .btn-catalog {
+            background: #333;
+            color: white;
+        }
+        .btn-catalog:hover {
+            background: #555;
+        }
+        .email-notice {
+            background: #e8f5e9;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 20px;
+            color: #2e7d32;
+            font-size: 0.95em;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">Mucoki & Co.</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="catalog.html">Catalogue</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Success Message -->
+    <div class="success-container">
+        <div class="success-icon">✓</div>
+        <h1>Payment Successful!</h1>
+        <p>Thank you for your purchase. Your order has been confirmed.</p>
+        
+        <div class="order-details">
+            <h3>Order Details</h3>
+            <div class="detail-row">
+                <span class="detail-label">Order ID:</span>
+                <span class="detail-value" id="order-id">Loading...</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Customer Name:</span>
+                <span class="detail-value" id="customer-name">Loading...</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Email:</span>
+                <span class="detail-value" id="customer-email">Loading...</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Date & Time:</span>
+                <span class="detail-value" id="order-date">Loading...</span>
+            </div>
+            
+            <div class="item-list">
+                <h4 style="margin-top: 0; color: #666;">Items Purchased</h4>
+                <div id="items-list"></div>
+            </div>
+            
+            <div class="total-amount">
+                Total Amount: $<span id="total-amount">0.00</span>
+            </div>
+        </div>
+
+        <div class="email-notice">
+            <strong>📧 Confirmation Email:</strong> A detailed receipt and shipping information has been sent to your registered email address. Please check your inbox and spam folder.
+        </div>
+
+        <div class="action-buttons">
+            <a href="index.html" class="btn-home">Back to Home</a>
+            <a href="catalog.html" class="btn-catalog">Continue Shopping</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Mucoki & Co.</h4>
+                    <p>Luxury 24k gold jewellery since 2010</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="catalog.html">Catalogue</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: info@mucokiandco.com</p>
+                    <p>Phone: +1 (555) 123-4567</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Mucoki & Co. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Load order details from localStorage
+        function loadOrderDetails() {
+            const orderDetails = JSON.parse(localStorage.getItem('lastOrder') || '{}');
+            const urlParams = new URLSearchParams(window.location.search);
+            const orderId = urlParams.get('orderId');
+            
+            if (!orderDetails || !orderDetails.items) {
+                document.getElementById('order-id').textContent = orderId || 'N/A';
+                return;
+            }
+            
+            // Populate order details
+            document.getElementById('order-id').textContent = orderId || orderDetails.orderId || 'N/A';
+            document.getElementById('customer-name').textContent = orderDetails.payerName || 'N/A';
+            document.getElementById('customer-email').textContent = orderDetails.payerEmail || 'N/A';
+            document.getElementById('order-date').textContent = new Date(orderDetails.timestamp).toLocaleString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+            document.getElementById('total-amount').textContent = parseFloat(orderDetails.amount).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            
+            // Display items
+            const itemsList = document.getElementById('items-list');
+            itemsList.innerHTML = '';
+            orderDetails.items.forEach(item => {
+                const price = parseFloat(item.price.replace('$', '').replace(',', ''));
+                const quantity = item.quantity || 1;
+                const subtotal = price * quantity;
+                const itemHTML = `
+                    <div class="item">
+                        <strong>${item.name}</strong>
+                        <div style="color: #666; font-size: 0.9em;">
+                            $${price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} × ${quantity} = $${subtotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                        </div>
+                    </div>
+                `;
+                itemsList.innerHTML += itemHTML;
+            });
+        }
+        
+        document.addEventListener('DOMContentLoaded', loadOrderDetails);
+    </script>
+</body>
+</html>
