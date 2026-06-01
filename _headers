@@ -1,0 +1,7 @@
+/* Set cache control headers */
+/
+  Cache-Control: public, max-age=3600
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
