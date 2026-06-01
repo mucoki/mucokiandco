@@ -7,6 +7,32 @@ function getCart() {
     return cart ? JSON.parse(cart) : [];
 }
 
+// Get customer email
+function getCustomerEmail() {
+    const email = document.getElementById('customer-email').value.trim();
+    if (!email) {
+        alert('Please enter your email address');
+        return null;
+    }
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        alert('Please enter a valid email address');
+        return null;
+    }
+    return email;
+}
+
+// Get customer name
+function getCustomerName() {
+    const name = document.getElementById('customer-name').value.trim();
+    if (!name) {
+        alert('Please enter your full name');
+        return null;
+    }
+    return name;
+}
+
 // Display cart items
 function displayCart() {
     const cart = getCart();
@@ -112,6 +138,13 @@ function renderPayPalButton() {
             tagline: false
         },
         createOrder: function(data, actions) {
+            // Validate customer information
+            const email = getCustomerEmail();
+            const name = getCustomerName();
+            if (!email || !name) {
+                return Promise.reject(new Error('Please fill in all required fields'));
+            }
+            
             // Create order with cart items
             const cart = getCart();
             const items = cart.map(item => {
@@ -141,7 +174,8 @@ function renderPayPalButton() {
                         }
                     },
                     items: items,
-                    description: 'Mucoki & Co. Luxury Jewelry Purchase'
+                    description: 'Mucoki & Co. Luxury Jewelry Purchase',
+                    custom_id: email
                 }],
                 application_context: {
                     brand_name: 'Mucoki & Co.',
@@ -158,12 +192,15 @@ function renderPayPalButton() {
                 // Handle successful payment
                 console.log('Order captured:', orderData);
                 
+                const email = document.getElementById('customer-email').value.trim();
+                const name = document.getElementById('customer-name').value.trim();
+                
                 // Store order details
                 const orderDetails = {
                     orderId: orderData.id,
                     status: orderData.status,
-                    payerEmail: orderData.payer.email_address,
-                    payerName: orderData.payer.name.given_name + ' ' + orderData.payer.name.surname,
+                    payerEmail: email || (orderData.payer ? orderData.payer.email_address : 'Not provided'),
+                    payerName: name || (orderData.payer ? (orderData.payer.name.given_name + ' ' + orderData.payer.name.surname) : 'Not provided'),
                     amount: totalAmount,
                     items: getCart(),
                     timestamp: new Date().toISOString()
@@ -193,4 +230,26 @@ function renderPayPalButton() {
 document.addEventListener('DOMContentLoaded', function() {
     displayCart();
     renderPayPalButton();
+    
+    // Optional: Save email input to avoid re-entry
+    const emailInput = document.getElementById('customer-email');
+    const nameInput = document.getElementById('customer-name');
+    
+    if (emailInput) {
+        emailInput.addEventListener('change', function() {
+            sessionStorage.setItem('customer_email', this.value);
+        });
+        // Load saved email if available
+        const savedEmail = sessionStorage.getItem('customer_email');
+        if (savedEmail) emailInput.value = savedEmail;
+    }
+    
+    if (nameInput) {
+        nameInput.addEventListener('change', function() {
+            sessionStorage.setItem('customer_name', this.value);
+        });
+        // Load saved name if available
+        const savedName = sessionStorage.getItem('customer_name');
+        if (savedName) nameInput.value = savedName;
+    }
 });
