@@ -1,6 +1,6 @@
 # Mucoki & Co. - Luxury 24k Gold Jewellery Website
 
-A professional static HTML website for premium 24k gold jewellery, featuring a curated collection ranging from $8,000 to $50,000.
+A professional static HTML website for premium 24k gold jewellery, featuring a curated collection ranging from $18,000 to $60,000.
 
 ## Website Structure
 
@@ -26,7 +26,7 @@ A professional static HTML website for premium 24k gold jewellery, featuring a c
 🛍️ **Product Showcase**
 - 20 handcrafted 24k gold products
 - Detailed product descriptions
-- Price range: $8,000 - $50,000
+- Price range: $18,000 - $60,000
 - Product features and specifications
 - Easy navigation by category
 
@@ -50,34 +50,34 @@ A professional static HTML website for premium 24k gold jewellery, featuring a c
 ## Product Categories
 
 ### Rings
-- Royal Heritage Ring - $18,500
-- Emperor's Crown Ring - $28,000
-- Floral Elegance Ring - $12,500
-- Prestige Band - $22,000
+- Royal Heritage Ring - $28,500
+- Emperor's Crown Ring - $38,000
+- Floral Elegance Ring - $22,500
+- Prestige Band - $32,000
 
 ### Necklaces
-- Eternal Grace Necklace - $24,000
-- Celestial Symphony - $35,000
-- Diamond Legacy - $42,000
-- Vintage Elegance - $18,500
+- Eternal Grace Necklace - $34,000
+- Celestial Symphony - $45,000
+- Diamond Legacy - $52,000
+- Vintage Elegance - $28,500
 
 ### Bracelets
-- Sovereign Bangle Set - $32,000
-- Chain Link Bracelet - $15,000
-- Royal Cuff Bracelet - $28,500
-- Festive Glory Bangles - $20,000
+- Sovereign Bangle Set - $42,000
+- Chain Link Bracelet - $25,000
+- Royal Cuff Bracelet - $38,500
+- Festive Glory Bangles - $30,000
 
 ### Earrings
-- Star Drop Earrings - $9,500
-- Bloom Studs - $8,000
-- Mystique Chandelier - $16,000
-- Radiance Hoops - $12,000
+- Star Drop Earrings - $19,500
+- Bloom Studs - $18,000
+- Mystique Chandelier - $26,000
+- Radiance Hoops - $22,000
 
 ### Brooches
-- Imperial Eagle Brooch - $18,000
-- Rose Royale Brooch - $14,500
-- Crown Jewel Brooch - $25,000
-- Butterfly Garden Brooch - $11,000
+- Imperial Eagle Brooch - $28,000
+- Rose Royale Brooch - $24,500
+- Crown Jewel Brooch - $35,000
+- Butterfly Garden Brooch - $21,000
 
 ## Deployment on Cloudflare Pages
 
@@ -145,9 +145,9 @@ Edit product information directly in `catalog.html`
 
 ## Contact
 
-- Email: info@mucokiandco.com
-- Phone: +1 (555) 123-4567
-- Address: 123 Luxury Avenue, New York, NY 10001
+- Email: mucokiandco@gmail.com
+- Phone: 0795197134
+- Address: 2344 Kiambu, Kenya
 
 ---
 
