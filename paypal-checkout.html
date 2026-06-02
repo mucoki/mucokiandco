@@ -6,74 +6,25 @@
     <title>Checkout - Mucoki &amp; Co.</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        .checkout-container {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 20px;
-        }
-        .checkout-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin: 30px 0;
-        }
-        .order-summary {
-            background: #f9f9f9;
-            padding: 20px;
-            border-radius: 8px;
-            border: 1px solid #e0e0e0;
-        }
-        .order-summary h3 {
-            margin-top: 0;
-            color: #333;
-        }
-        .order-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 0;
-            border-bottom: 1px solid #e0e0e0;
-        }
-        .order-item:last-child {
-            border-bottom: none;
-        }
-        .order-total {
-            font-size: 1.3em;
-            font-weight: bold;
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 2px solid #d4af37;
-            color: #d4af37;
-        }
-        #paypal-button-container {
-            margin: 20px 0;
-        }
-        .paypal-section {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            border: 1px solid #e0e0e0;
-        }
-        .product-details {
-            background: #f9f9f9;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-        .empty-cart {
-            text-align: center;
-            padding: 40px;
-            color: #666;
-        }
-        .empty-cart a {
-            color: #d4af37;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        @media (max-width: 768px) {
-            .checkout-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+        .checkout-container { max-width: 900px; margin: 40px auto; padding: 20px; }
+        .checkout-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 30px 0; }
+        .order-summary { background: var(--light-color); padding: 20px; border-radius: 8px; border: 1px solid var(--border-color); }
+        .order-summary h3 { margin-top: 0; color: var(--dark-color); }
+        .order-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border-color); }
+        .order-item:last-child { border-bottom: none; }
+        .order-total { font-size: 1.3em; font-weight: bold; margin-top: 15px; padding-top: 15px; border-top: 2px solid var(--primary-color); color: var(--primary-color); }
+        .bank-section { background: white; padding: 20px; border-radius: 8px; border: 1px solid var(--border-color); }
+        .bank-section h3 { color: var(--dark-color); margin-top: 0; }
+        .bank-card { background: var(--light-color); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.2rem; display: flex; flex-direction: column; gap: 0.8rem; margin: 1rem 0; }
+        .bank-row { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+        .bank-label { font-weight: bold; color: var(--dark-color); min-width: 130px; font-size: 0.9rem; }
+        .bank-value { color: var(--text-color); font-size: 0.95rem; font-weight: 500; }
+        .copy-btn { padding: 0.25rem 0.8rem; font-size: 0.8rem; }
+        .submit-btn { width: 100%; padding: 0.85rem; font-size: 1rem; margin-top: 0.5rem; border: none; }
+        .success-msg { margin-top: 1.5rem; background: #e6ffed; border: 1px solid #68d391; color: #276749; padding: 1rem 1.5rem; border-radius: 6px; font-weight: bold; font-size: 0.95rem; display: none; }
+        .empty-cart { text-align: center; padding: 40px; color: #666; }
+        .empty-cart a { color: var(--primary-color); text-decoration: none; font-weight: bold; }
+        @media (max-width: 768px) { .checkout-grid { grid-template-columns: 1fr; } .bank-label { min-width: 100px; } }
     </style>
 </head>
 <body>
@@ -92,42 +43,68 @@
 
     <section class="page-header">
         <h1>Secure Checkout</h1>
-        <p>Complete your purchase with PayPal</p>
+        <p>Complete your purchase via bank transfer</p>
     </section>
 
     <div class="checkout-container">
-        <div id="checkout-content">
+        <div id="checkout-content" style="display:none;">
             <div class="checkout-grid">
 
+                <!-- Order Summary -->
                 <div class="order-summary">
                     <h3>Order Summary</h3>
                     <div id="cart-items"></div>
-                    <div class="order-total">
-                        Total: $<span id="total-amount">0.00</span>
-                    </div>
+                    <div class="order-total">Total: $<span id="total-amount">0.00</span></div>
                 </div>
 
-                <div class="paypal-section">
-                    <h3>Your Details</h3>
-                    <div style="margin-bottom: 20px;">
-                        <label for="customer-name" style="display: block; margin-bottom: 5px; font-weight: bold; color: #333;">Full Name *</label>
-                        <input type="text" id="customer-name" placeholder="Enter your full name" required
-                            style="width: 100%; padding: 10px; border: 1px solid #e0e0e0; border-radius: 4px; font-size: 1em; box-sizing: border-box;">
+                <!-- Bank Transfer Section -->
+                <div class="bank-section">
+                    <h3>Bank Transfer Details</h3>
+                    <p style="color:#666; font-size:0.9rem;">Transfer the total amount to the account below, then fill in the form to confirm your order.</p>
+                    <div class="bank-card">
+                        <div class="bank-row">
+                            <span class="bank-label">Bank</span>
+                            <span class="bank-value">Loop Financial</span>
+                        </div>
+                        <div class="bank-row">
+                            <span class="bank-label">Account Name</span>
+                            <span class="bank-value">Victor Mucoki Mugo</span>
+                        </div>
+                        <div class="bank-row">
+                            <span class="bank-label">Account Number</span>
+                            <span class="bank-value" id="accNumber">4890010100591001</span>
+                            <button class="btn btn-secondary copy-btn" onclick="copyAccount()">Copy</button>
+                        </div>
                     </div>
-                    <div style="margin-bottom: 20px;">
-                        <label for="customer-email" style="display: block; margin-bottom: 5px; font-weight: bold; color: #333;">Email Address *</label>
-                        <input type="email" id="customer-email" placeholder="Enter your email address" required
-                            style="width: 100%; padding: 10px; border: 1px solid #e0e0e0; border-radius: 4px; font-size: 1em; box-sizing: border-box;">
+
+                    <h3 style="margin-top:1.5rem;">Confirm Your Payment</h3>
+                    <form id="checkoutForm" onsubmit="submitOrder(event)">
+                        <div class="form-group">
+                            <label for="customerName">Full Name</label>
+                            <input type="text" id="customerName" placeholder="Enter your full name" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="customerEmail">Email Address</label>
+                            <input type="email" id="customerEmail" placeholder="Enter your email" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="transactionId">Transaction ID / Reference</label>
+                            <input type="text" id="transactionId" placeholder="e.g. TXN123456" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="proofFile">Upload Payment Proof (optional)</label>
+                            <input type="file" id="proofFile" accept="image/*,.pdf" />
+                        </div>
+                        <button type="submit" class="btn btn-primary submit-btn">Confirm Order</button>
+                    </form>
+                    <div class="success-msg" id="successMsg">
+                        &#10003; Order confirmed! We will verify your payment and process your order shortly.
                     </div>
-                    <h3>Payment Method</h3>
-                    <div id="paypal-button-container"></div>
-                    <div id="paypal-message-container"></div>
-                    <p>Safe and secure payment powered by PayPal</p>
                 </div>
             </div>
         </div>
 
-        <div id="empty-state" class="empty-cart">
+        <div id="empty-state" class="empty-cart" style="display:none;">
             <h2>Your Cart is Empty</h2>
             <p>No items selected for purchase.</p>
             <p><a href="catalog.html">&larr; Continue Shopping</a></p>
@@ -161,7 +138,70 @@
         </div>
     </footer>
 
-    <script src="https://www.paypal.com/sdk/js?client-id=AawbfCOKv9GIAe1BJ2aZXT7eRvheXXsURzfZ1ZBrmspy5rv48W2SiSxoNoEQpOijF33B2skjGc9vCufX&components=buttons,messages&currency=USD"></script>
-    <script src="paypal-checkout.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const cart = JSON.parse(localStorage.getItem('mucoki_cart') || '[]');
+            const checkoutContent = document.getElementById('checkout-content');
+            const emptyState = document.getElementById('empty-state');
+
+            if (cart.length === 0) {
+                emptyState.style.display = 'block';
+                return;
+            }
+
+            checkoutContent.style.display = 'block';
+            const cartItemsEl = document.getElementById('cart-items');
+            let total = 0;
+
+            cartItemsEl.innerHTML = cart.map(item => {
+                const price = parseFloat(item.price.replace(/[$,]/g, ''));
+                const qty = item.quantity || 1;
+                const subtotal = price * qty;
+                total += subtotal;
+                return `<div class="order-item"><span>${escapeHtml(item.name)} x${qty}</span><span>$${subtotal.toLocaleString()}</span></div>`;
+            }).join('');
+
+            document.getElementById('total-amount').textContent = total.toLocaleString();
+        });
+
+        function copyAccount() {
+            const accNumber = document.getElementById('accNumber').textContent;
+            navigator.clipboard.writeText(accNumber).then(() => {
+                const btn = document.querySelector('.copy-btn');
+                btn.textContent = 'Copied!';
+                setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+            });
+        }
+
+        function submitOrder(event) {
+            event.preventDefault();
+            const cart = JSON.parse(localStorage.getItem('mucoki_cart') || '[]');
+            const total = document.getElementById('total-amount').textContent;
+
+            const order = {
+                name: document.getElementById('customerName').value.trim(),
+                email: document.getElementById('customerEmail').value.trim(),
+                transactionId: document.getElementById('transactionId').value.trim(),
+                total: '$' + total,
+                items: cart,
+                submittedAt: new Date().toLocaleString()
+            };
+
+            const orders = JSON.parse(localStorage.getItem('mucoki_orders') || '[]');
+            orders.push(order);
+            localStorage.setItem('mucoki_orders', JSON.stringify(orders));
+            localStorage.removeItem('mucoki_cart');
+
+            document.getElementById('checkoutForm').reset();
+            document.getElementById('successMsg').style.display = 'block';
+            setTimeout(() => { window.location.href = 'success.html'; }, 3000);
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.appendChild(document.createTextNode(text));
+            return div.innerHTML;
+        }
+    </script>
 </body>
 </html>
