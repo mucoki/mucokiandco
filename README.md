@@ -1,4 +1,4 @@
-8# Mucoki & Co. - Luxury 24k Gold Jewellery Website
+# Mucoki & Co. - Luxury 24k Gold Jewellery Website
 
 A professional static HTML website for premium 24k gold jewellery, featuring a curated collection
 
@@ -49,10 +49,10 @@ A professional static HTML website for premium 24k gold jewellery, featuring a c
 ## Product Categories
 
 ### Rings
-- Royal Heritage Ring - $2,500
-- Emperor's Crown Ring - $2,800
-- Floral Elegance Ring - $3,000
-- Prestige Band - $3,200
+- Royal Heritage Ring - $2,800
+- Emperor's Crown Ring - $3,200
+- Floral Elegance Ring - $3,500
+- Prestige Band - $3,600
 
 ### Necklaces
 - Eternal Grace Necklace - $3,400
