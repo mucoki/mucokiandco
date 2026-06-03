@@ -25,8 +25,7 @@ A professional static HTML website for premium 24k gold jewellery, featuring a c
 
 🛍️ **Product Showcase**
 - 20 handcrafted 24k gold products
-- Detailed product descriptions
-- Price range: $18,000 - $60,000
+- Detailed product description
 - Product features and specifications
 - Easy navigation by category
 
